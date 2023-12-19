@@ -60,7 +60,7 @@
   ansible.builtin.yum:
     - rabbitmq-server
     - erlang
-    state: installed
+  state: installed
 
 
 - name: Enable and start the rabbitmq
