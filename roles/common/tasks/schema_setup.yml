@@ -1,25 +1,30 @@
+- name: Mongodb schema
+  when: schema_setup == "mongo"
+  block:
+    - name: Setup Mongodb Repo file
+      ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/yum.repos.d/mongo.repo
 
-# if [ ${schema_setup} == "mongo" ]; then
-#    print_head  " <<<<<<< cp mongodb.repo to system >>>>>>> "
-#    cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongo.repo &>>${log_file}
-#    status_check $?
-
-
-#    print_head  " <<<<<<< Installing mongodb-org-shell >>>>>>> "
-#    dnf install mongodb-org-shell -y &>>${log_file}
-#    status_check $?
-
-#    print_head  " <<<<<<< Load Schema >>>>>>> "
-#    mongo --host mongodb-dev.devsig90.online </app/schema/${component}.js &>>${log_file}
-#    status_check $?
-
-# elif [ ${schema_setup} == "mysql" ]; then
-#    print_head " <<<<<<< Installing Mysql >>>>>>> "
-#    yum install mysql -y  &>>${log_file}
-#    status_check $?
+    - name: Install Mongodb clinet
+      ansible.builtin.yum:
+         name: mongodb-org-shell
+         state: installed
     
-#    print_head " <<<<<<< Load Schema >>>>>>> "
-#    mysql -h mysql-dev.devsig90.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql  &>>${log_file}
-#    status_check $?
+    - name: Load schema
+      ansible.builtin.shell: mongo --host mongodb-dev.devsig90.online </app/schema/{{component}}.js
 
-# fi
+
+
+
+- name: Mysq; schema
+  when: schema_setup == "mysql"
+  block:
+    - name: Install Mysql clinet
+      ansible.builtin.yum:
+         name: mysql
+         state: installed
+    
+    - name: Load schema
+      ansible.builtin.shell: mysql -h mysql-dev.devsig90.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+    
