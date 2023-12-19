@@ -56,27 +56,4 @@
 - name: install Rabbitmq repo
   ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
  
-- name: installing Erlang & Rabbitmq
-  ansible.builtin.yum:
-    - rabbitmq-server
-    - erlang
-  state: installed
-
-
-- name: Enable and start the rabbitmq
-  ansible.builtin.systemd:
-    name: rabbiitmq
-    state: restarted
-    enabled: yes
-
-
-- name:  Add application User
-  community.rabbitmq.rabbitmq_user:
-    user: roboshop
-    password: roboshop123
-    vhost: /
-    configure_priv: .*
-    read_priv: .*
-    write_priv: .*
-    state: present
 
