@@ -34,7 +34,12 @@
   community.general.npm:
     path: /app
 
-# - name: schema_setup
-#   ansible.builtin.import_tasks:
-#     file: schema_setup.yml
+- name: schema_setup
+  ansible.builtin.import_tasks:
+    file: schema_setup.yml
+  when: schema_setup is defined
+
+- name: systemd_setup
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
 
