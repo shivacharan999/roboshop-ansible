@@ -26,5 +26,5 @@
          state: installed
     
     - name: Load schema
-      ansible.builtin.shell: mysql -h mysql-dev.devsig90.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+      ansible.builtin.shell: mysql -h mysql-dev.devsig90.online -uroot -pRoboShop@1 < /app/schema/{{component}}.sql
     
