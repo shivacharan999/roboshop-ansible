@@ -1,2 +1,2 @@
 component: user
-schema_setup: mysql
+schema_type: mysql
