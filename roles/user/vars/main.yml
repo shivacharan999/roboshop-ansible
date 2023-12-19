@@ -1,2 +1,2 @@
 component: user
-schema_type: mysql
+schema_type: mongo
