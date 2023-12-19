@@ -1,3 +1,22 @@
-- name: Print mongodb
-  debug:
-     msg: mongodb
+- name: Copy Mongodb repo file 
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install mongodb
+  ansible.builtin.yum:
+    name: mongodb-org 
+    state: installed
+
+- name: Update Mongodb listen addddress
+  ansible.builtin.repalce:
+    path: /etc/mongod.conf
+    regexp: "127.0.0.1"
+    repalce: "0.0.0.0"
+
+- name: Enable and Restart the mongodb
+  ansible.builtin.service:
+    name: mongo
+    state: restarted
+    enabled: yes
+
