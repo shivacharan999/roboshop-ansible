@@ -35,24 +35,29 @@
 # status_check $?
 
 
-- name: setup Mysql Repo
-  ansible.builtin.cpoy:
-    src: mysql.repo
-    dest: /etc/yum.repo/mysql.rep
+# - name: setup Mysql Repo
+#   ansible.builtin.cpoy:
+#     src: mysql.repo
+#     dest: /etc/yum.repo/mysql.rep
 
-- name: Disable mysql 8
-  ansible.builtin.shell: dnf module disable mysql -y
+# - name: Disable mysql 8
+#   ansible.builtin.shell: dnf module disable mysql -y
 
-- name: Install Mysql 5.7
-  ansible.builtin.yum:
-    name: mysql-community-server
-    state: installed
+# - name: Install Mysql 5.7
+#   ansible.builtin.yum:
+#     name: mysql-community-server
+#     state: installed
 
-- name: start the Mysql
-  ansible.builtin.service:
-    name: mysqld
-    state: restarted
-    enabled: 
+# - name: start the Mysql
+#   ansible.builtin.service:
+#     name: mysqld
+#     state: restarted
+#     enabled: 
     
-- name: Reset Password
-  ansible.builtin.shell: mysql_secure_installation --set-root-pass RoboShop@1 
+# - name: Reset Password
+#   ansible.builtin.shell: mysql_secure_installation --set-root-pass RoboShop@1 
+
+
+- name: Print mysql
+  debug:
+     msg: mysql
