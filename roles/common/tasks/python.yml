@@ -15,7 +15,7 @@
 
 - name: download dependencies & Packages 
   ansible.builtin.pip:
-    requirements: /app 
+    requirements: /app/requirements.txt
     executable: pip3.6
 
 
