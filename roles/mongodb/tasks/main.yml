@@ -9,7 +9,7 @@
     state: installed
 
 - name: Update Mongodb listen addddress
-  ansible.builtin.repalce:
+  ansible.builtin.replace:
     path: /etc/mongod.conf
     regexp: "127.0.0.1"
     replace: "0.0.0.0"
