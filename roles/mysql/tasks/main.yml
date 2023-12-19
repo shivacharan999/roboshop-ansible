@@ -35,10 +35,10 @@
 # status_check $?
 
 
-# - name: setup Mysql Repo
-#   ansible.builtin.cpoy:
-#     src: mysql.repo
-#     dest: /etc/yum.repo/mysql.rep
+- name: setup Mysql Repo
+  ansible.builtin.cpoy:
+    src: mysql.repo
+    dest: /etc/yum.repo/mysql.rep
 
 # - name: Disable mysql 8
 #   ansible.builtin.shell: dnf module disable mysql -y
