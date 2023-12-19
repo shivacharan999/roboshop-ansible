@@ -3,3 +3,23 @@
     name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm 
     state: installed
     disable_gpg_check: yes
+
+- name: enable and install Redis
+  ansible.builtin.dnf:
+    name: "@redis:remi-6.2"
+    state: installed
+    
+
+
+- name: Update redis listen addddress
+  ansible.builtin.replace:
+    path: /etc/redis.conf 
+    regexp: "127.0.0.1"
+    replace: "0.0.0.0"
+
+
+- name: Enable and Restart the redis
+  ansible.builtin.service:
+    name: redis
+    state: restarted
+    enabled: yes
