@@ -11,7 +11,7 @@
 - name: create App Directory 
   ansible.builtin.file:
     path: /usr/share/nginx/html/
-    state: present
+    state: directory
 
 
 - name: Download and extract the frontend content
