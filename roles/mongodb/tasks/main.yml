@@ -12,7 +12,7 @@
   ansible.builtin.repalce:
     path: /etc/mongod.conf
     regexp: "127.0.0.1"
-    repalce: "0.0.0.0"
+    replace: "0.0.0.0"
 
 - name: Enable and Restart the mongodb
   ansible.builtin.service:
